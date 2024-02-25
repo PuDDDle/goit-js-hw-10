@@ -24,11 +24,13 @@ const options = {
     // Отримуємо поточну дату
     const currentDate = new Date();
     if (userSelectedDate.getTime() <= currentDate.getTime()) {
+      startBtn.disabled = true;
       iziToast.error({
         title: 'Error',
         message: 'Please choose a date in the future!',
         position: 'topRight',
       });
+      return;
     }
     startBtn.disabled = false;
   },
@@ -50,7 +52,7 @@ const timer = {
       if (deltaTime <= 0) {
         clearInterval(timerInterval);
         timerInterval = null; // Скидаємо змінну після завершення таймера
-        updateTimer({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        updateTimer({ days: '00', hours: '00', minutes: '00', seconds: '00' });
         // Розблоковуємо інпут і кнопку після закінчення таймера
         datetimePicker.disabled = false;
         startBtn.disabled = false;
